@@ -56,8 +56,9 @@ class ClientSearch extends Client
          * Внимание костыль!
          * TODO разобраться как правильно сделать подобный поиск
          */
-        $query->andFilterWhere(['like', 'second_name', $this->second_name])
-            ->orFilterWhere(['like', 'phone.phone_number', $this->second_name]);
+        $searchQuery = trim($this->second_name);
+        $query->andFilterWhere(['like', 'second_name', $searchQuery])
+            ->orFilterWhere(['like', 'phone.phone_number', $searchQuery]);
 
         return $dataProvider;
     }
